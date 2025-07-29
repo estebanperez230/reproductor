@@ -1,5 +1,5 @@
 angular.module("Reproductor", [])
-    .controller("ControladorReproductor", function ($scope, $http) {
+    .controller("ControladorReproductor", function ($scope, $http, $interval) {
 
         $scope.artistaSeleccionado = "";
         $scope.artistas = [];
@@ -48,5 +48,11 @@ angular.module("Reproductor", [])
             $scope.reproductor.currentTime = $scope.tiempoActual;
 
         }
+
+        $interval(function () {
+            if (!$scope.reproductor.paused) {
+                $scope.tiempoActual = $scope.reproductor.currentTime;
+            }
+        }, 500, 0, true);
 
     });
