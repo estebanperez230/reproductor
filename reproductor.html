@@ -1,0 +1,59 @@
+<html ng-app="Reproductor">
+
+<head>
+    <title>Reproductor Musical</title>
+    <link rel="stylesheet" href="estilos/estilos.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <script src="codigo/app.js"></script>
+
+</head>
+
+
+<body ng-controller="ControladorReproductor">
+    <div class="principal">
+        <h1 class="titulo">Music</h1>
+        <div class="artistas">
+
+            <div class="listaArtistas">
+                <h2>Artistas</h2>
+                <ul>
+                    <li ng-repeat="artista in artistas" ng-click="seleccionarArtista(artista)">
+                        {{artista.Nombre}}
+                    </li>
+
+                </ul>
+            </div>
+            <div class="listaCanciones">
+                <h2 ng-if="artistaSeleccionado!= ''">Canciones de {{artistaSeleccionado}}</h2>
+                <ul>
+                    <li ng-repeat="cancion in canciones" ng-click="seleccionarCancion(cancion)">
+                        {{ cancion.Titulo }}
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="reproductor">
+            <h3>Reproduciendo ahora</h3>
+            {{ cancionSeleccionada }}
+
+            <div>
+                <button ng-click="reproducir()">
+                    <img src="iconos/play.png">
+                </button>
+                <button ng-click="pausar()">
+                    <img src="iconos/pause.png">
+                </button>
+                <button>
+                    <img src="iconos/stop.png">
+                </button>
+
+
+                <br><!-- Esto es un comentario -->
+                <input type="range" min="0" max="{{duracion}}" step="0.1" ng-model="tiempoActual"
+                    ng-change="ubicarTiempoCancion()" />
+            </div>
+        </div>
+    </div>
+</body>
+</html>
